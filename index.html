@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tortured Debaters Department</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --royal-blue: #09152a;
+            --electric-blue: #16294a;
+            --navy-dark: #040914;
+            --metallic-gold: #e5c158;
+            --bright-gold: #f7e396;
+            --deep-gold: #9e7d26;
+            --text-light: #e0e8f5;
+            --card-bg: rgba(9, 21, 42, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--navy-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-image: 
+                linear-gradient(rgba(229, 193, 88, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(229, 193, 88, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ------------------ NAVIGATION BAR ------------------ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(4, 9, 20, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--metallic-gold);
+            box-shadow: 0 4px 20px rgba(229, 193, 88, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--metallic-gold);
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--metallic-gold);
+            text-shadow: 0 0 8px rgba(229, 193, 88, 0.6);
+        }
+
+        /* ------------------ HERO SECTION ------------------ */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding-top: 60px;
+            background: radial-gradient(circle at center, var(--electric-blue) 0%, var(--navy-dark) 80%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1000px;
+        }
+
+        .hero-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid var(--metallic-gold);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(229, 193, 88, 0.3);
+        }
+
+        .hero-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--bright-gold), var(--metallic-gold), var(--deep-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.8));
+            margin-bottom: 15px;
+        }
+
+        .slogan-badge {
+            margin-top: 15px;
+            padding: 12px 32px;
+            background: rgba(9, 21, 42, 0.8);
+            border: 1px solid var(--metallic-gold);
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(229, 193, 88, 0.2);
+        }
+
+        .slogan-text {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--bright-gold);
+            text-transform: uppercase;
+        }
+
+        /* ------------------ SECTIONS GENERAL ------------------ */
+        .section {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.2rem;
+            color: var(--metallic-gold);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ------------------ ABOUT SECTION ------------------ */
+        #about {
+            background: var(--royal-blue);
+            border-top: 1px solid rgba(229, 193, 88, 0.3);
+            border-bottom: 1px solid rgba(229, 193, 88, 0.3);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--metallic-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #d1dceb;
+            line-height: 1.8;
+            word-wrap: break-word;
+        }
+
+        /* ------------------ MEET THE TEAM (ABOUT US) ------------------ */
+        #team {
+            background: var(--navy-dark);
+            overflow: hidden;
+        }
+
+        .carousel-track-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: calc(240px * 26); 
+            animation: infiniteScroll 30s linear infinite;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes infiniteScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-240px * 13)); }
+        }
+
+        .team-member {
+            width: 200px;
+            margin: 0 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .square-frame {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 15px auto;
+            border-radius: 8px;
+            border: 2px solid var(--metallic-gold);
+            box-shadow: 0 0 15px rgba(229, 193, 88, 0.2);
+            overflow: hidden;
+            background: var(--royal-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .square-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member:hover .square-frame {
+            transform: translateY(-5px);
+            border-color: var(--bright-gold);
+            box-shadow: 0 0 20px rgba(229, 193, 88, 0.5);
+        }
+
+        .member-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+        }
+
+        /* ------------------ PROJECTS SECTION ------------------ */
+        #projects {
+            background: var(--royal-blue);
+            border-top: 1px solid rgba(229, 193, 88, 0.3);
+            border-bottom: 1px solid rgba(229, 193, 88, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(4, 9, 20, 0.8);
+            border: 1px solid var(--metallic-gold);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(229, 193, 88, 0.2);
+            border-color: var(--bright-gold);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            border: 1px solid var(--metallic-gold);
+            border-radius: 4px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .project-number {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--metallic-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.2rem;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        /* ------------------ CONTACT SECTION ------------------ */
+        #contact {
+            background: var(--navy-dark);
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--metallic-gold);
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-item {
+            margin: 25px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--metallic-gold);
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .contact-value {
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            word-break: break-all;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value:hover {
+            color: var(--bright-gold);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">TDD</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#team">About Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-container">
+        <div class="hero-content">
+            <img src="logo.jpg" alt="Tortured Debaters Department Logo" class="hero-logo">
+            <h1 class="hero-title">Tortured Debaters Department</h1>
+            <div class="slogan-badge">
+                <p class="slogan-text">Official Debate Website</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <h2 class="section-title">About</h2>
+        <div class="about-container">
+            <p class="about-text">
+                indi na si angelina kay ang, indi na si angelina kay ang, indi na si angelina kay ang over and over again
+            </p>
+        </div>
+    </section>
+
+    <!-- ABOUT US / MEMBERS SECTION -->
+    <section id="team" class="section">
+        <h2 class="section-title">About Us</h2>
+        
+        <div class="carousel-track-container">
+            <div class="carousel-track">
+                
+                <!-- 13 MEMBERS -->
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="sabel">
+                    </div>
+                    <p class="member-name">sabel</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="atty pot">
+                    </div>
+                    <p class="member-name">atty pot</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="angie">
+                    </div>
+                    <p class="member-name">angie</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="gov">
+                    </div>
+                    <p class="member-name">gov</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="arbie">
+                    </div>
+                    <p class="member-name">arbie</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="podai b1t1">
+                    </div>
+                    <p class="member-name">podai b1t1</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="nong syrose">
+                    </div>
+                    <p class="member-name">nong syrose</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="arrielle">
+                    </div>
+                    <p class="member-name">arrielle</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="jill">
+                    </div>
+                    <p class="member-name">jill</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="leo">
+                    </div>
+                    <p class="member-name">leo</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="jane">
+                    </div>
+                    <p class="member-name">jane</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="manang sel">
+                    </div>
+                    <p class="member-name">manang sel</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="tombits">
+                    </div>
+                    <p class="member-name">tombits</p>
+                </div>
+
+                <!-- DUPLICATED MEMBERS FOR CONTINUOUS CAROUSEL LOOP -->
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="sabel">
+                    </div>
+                    <p class="member-name">sabel</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="atty pot">
+                    </div>
+                    <p class="member-name">atty pot</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="angie">
+                    </div>
+                    <p class="member-name">angie</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="gov">
+                    </div>
+                    <p class="member-name">gov</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="arbie">
+                    </div>
+                    <p class="member-name">arbie</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="podai b1t1">
+                    </div>
+                    <p class="member-name">podai b1t1</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="nong syrose">
+                    </div>
+                    <p class="member-name">nong syrose</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="arrielle">
+                    </div>
+                    <p class="member-name">arrielle</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="jill">
+                    </div>
+                    <p class="member-name">jill</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="leo">
+                    </div>
+                    <p class="member-name">leo</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="jane">
+                    </div>
+                    <p class="member-name">jane</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="manang sel">
+                    </div>
+                    <p class="member-name">manang sel</p>
+                </div>
+                <div class="team-member">
+                    <div class="square-frame">
+                        <img src="profile.jpg" alt="tombits">
+                    </div>
+                    <p class="member-name">tombits</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Projects</h2>
+        
+        <div class="projects-grid">
+            <!-- PROJECT 1 -->
+            <div class="project-card">
+                <img src="cpu.jpg" alt="Project 1 Image" class="project-img">
+                <span class="project-number">Project I</span>
+                <h3 class="project-title">basta kontra namon si ang</h3>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card">
+                <img src="west.png" alt="Project 2 Image" class="project-img">
+                <span class="project-number">Project II</span>
+                <h3 class="project-title">10 years from now? Maybe? 30 years? perhaps</h3>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="project-card">
+                <img src="sanag.jpg" alt="Project 3 Image" class="project-img">
+                <span class="project-number">Project III</span>
+                <h3 class="project-title">proceed to your next question</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-box">
+            <div class="contact-item">
+                <span class="contact-label">Phone Contact</span>
+                <a href="tel:096969696969" class="contact-value">096969696969</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Email Address</span>
+                <a href="mailto:tortureddebatersdepartment@isatu.edu.ph" class="contact-value">tortureddebatersdepartment@isatu.edu.ph</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Facebook Page</span>
+                <span class="contact-value">none, because fb and ig is so 2019</span>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
